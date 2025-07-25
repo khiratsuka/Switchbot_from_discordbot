@@ -23,6 +23,13 @@ jobs:
           workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
+      - name: test on VM
+        run: |
+          gcloud compute ssh khiratsuka-containers@khiratsuka-containers-vm \
+            --quiet \
+            --command='
+              echo "Hello from GCP VM" >> ~/test.txt
+            '
       #- name: SSH and Pull Repo in GCP VM
       #  id: git_pull
       #  run: |

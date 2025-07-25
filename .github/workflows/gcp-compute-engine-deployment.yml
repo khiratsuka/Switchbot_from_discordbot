@@ -25,12 +25,11 @@ jobs:
 
       - name: test on VM
         run: |
-          gcloud config configurations list
-      #gcloud compute ssh khiratsuka-containers@khiratsuka-containers-vm \
-      #  --quiet \
-      #  --command='
-      #    echo "Hello from GCP VM" >> ~/test.txt
-      #  '
+          gcloud compute ssh khiratsuka-containers@khiratsuka-containers-vm \
+            --quiet \
+            --command='
+              echo "Hello from GCP VM" >> ~/test.txt
+            '
       #- name: SSH and Pull Repo in GCP VM
       #  id: git_pull
       #  run: |

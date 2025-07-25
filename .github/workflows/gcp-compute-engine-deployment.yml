@@ -20,7 +20,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           project_id: switchbot-from-discordbot
-          workload_identity_provider: 'projects/93099173880/locations/global/workloadIdentityPools/github-to-sfd-vm/subject/khiratsuka'
+          workload_identity_provider: 'projects/93099173880/locations/global/workloadIdentityPools/github-to-sfd-vm/providers/github-khiratsuka'
           service_account: 'github-to-sfd-vm@switchbot-from-discordbot.iam.gserviceaccount.com'
  
       #- name: SSH and Pull Repo in GCP VM

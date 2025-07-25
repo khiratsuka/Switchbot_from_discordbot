@@ -1,0 +1,37 @@
+name: Deploy to GCP-VM
+ 
+on:
+  push:
+    branches:
+      - feature-actions
+ 
+jobs:
+  deploy:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: switchbot-from-discordbot
+          workload_identity_provider: 'projects/93099173880/locations/global/workloadIdentityPools/github-to-sfd-vm/subject/khiratsuka'
+          service_account: 'github-to-sfd-vm@switchbot-from-discordbot.iam.gserviceaccount.com'
+ 
+      #- name: SSH and Pull Repo in GCP VM
+      #  id: git_pull
+      #  run: |
+      #echo "::set-output name=git_pull_output::$(
+      #    gcloud compute ssh user@example-instance \
+      #      --zone asia-northeast1-b \
+      #      --quiet \
+      #      --command='
+      #        cd path/to/repository && 
+      #        git pull
+      #      '
+      #  )"

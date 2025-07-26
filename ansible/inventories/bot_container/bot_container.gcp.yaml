@@ -6,7 +6,7 @@ projects:
 scopes:
   - https://www.googleapis.com/auth/compute
 service_account_file: <your-service-account-file-path>
-auth_kind: serviceaccount
+auth_kind: accesstoken
 filters: []
 hostnames:
   - name

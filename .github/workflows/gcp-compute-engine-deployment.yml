@@ -25,16 +25,25 @@ jobs:
           workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
+      - name: Setup Ansible
+        id: setup_ansible
+        run: |
+          pip install ansible-core requests google-auth
+          ansible-galaxy collection install google.cloud
+    
+      - name: Setup Ansible inventory
+        id: setup_inventory
+        run: |
+          sed -i "s|<your-service-account-file-path>|${{steps.auth.outputs.credentials_file_path}}|" ansible/inventories/bot_container/bot_container.gcp.yaml
+          ansible-inventory --list -i ansible/inventories/bot_container/bot_container.gcp.yaml
+          
       - name: test on VM
         run: |
           gcloud compute ssh khiratsuka-containers@khiratsuka-containers-vm \
             --zone us-west1-a \
             --quiet \
             --command='
-              echo "service_account_file: <your-service-account-file-path>" >> ~/test.txt
-              cat ~/test.txt
-              sed -i "s|<your-service-account-file-path>|${{steps.auth.outputs.credentials_file_path}}|" ~/test.txt
-              cat ~/test.txt
+              rm ~/.ssh/authorized_keys
             '
       #- name: SSH and Pull Repo in GCP VM
       #  id: git_pull

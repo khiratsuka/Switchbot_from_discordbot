@@ -5,7 +5,7 @@ projects:
   - switchbot-from-discordbot
 scopes:
   - https://www.googleapis.com/auth/compute
-service_account_file: <your-service-account-file-path>
+access_token: <your-access-token>
 auth_kind: accesstoken
 filters: []
 hostnames:

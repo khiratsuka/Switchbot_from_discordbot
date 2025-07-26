@@ -1,0 +1,12 @@
+plugin: gcp_compute
+zones:
+  - us-west1-a
+projects:
+  - switchbot-from-discordbot
+scopes:
+  - https://www.googleapis.com/auth/compute
+service_account_file: <your-service-account-file-path>
+auth_kind: serviceaccount
+filters: []
+hostnames:
+  - name

@@ -1,0 +1,7 @@
+- name: Deploy Codes
+  tasks:
+    - name: pwd
+      run: pwd
+    - name: test.txt
+      run: echo "This is a test file" >> ~/test.txt
+  notify: Run Container

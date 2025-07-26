@@ -38,7 +38,10 @@ jobs:
           pwd
           cat ansible/inventories/bot_container/bot_container.gcp.yaml
           sed -i "s|<your-access-token>|${{steps.auth.outputs.access_token}}|" ansible/inventories/bot_container/bot_container.gcp.yaml
-          ansible-inventory --list -i ansible/inventories/bot_container/bot_container.gcp.yaml
+          ansible-playbook \
+          --inventory=ansible/inventories/bot_container/bot_container.gcp.yaml \
+          -v ansible/top_playbook.yaml
+
 
       - name: test on VM
         run: |

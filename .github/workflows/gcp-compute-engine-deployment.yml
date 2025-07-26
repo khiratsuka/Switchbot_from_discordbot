@@ -14,9 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
+        id: checkout
         uses: actions/checkout@v4
  
       - name: Authenticate to GCP
+        id: auth
         uses: google-github-actions/auth@v2
         with:
           project_id: switchbot-from-discordbot
@@ -29,7 +31,10 @@ jobs:
             --zone us-west1-a \
             --quiet \
             --command='
-              echo "Hello from GCP VM" >> ~/test.txt
+              echo "service_account_file: <your-service-account-file-path>" >> ~/test.txt
+              cat ~/test.txt
+              sed -i "s/<your-service-account-file-path>/${{steps.auth.outputs.credentials_file_path}}/" ~/test.txt
+              cat ~/test.txt
             '
       #- name: SSH and Pull Repo in GCP VM
       #  id: git_pull

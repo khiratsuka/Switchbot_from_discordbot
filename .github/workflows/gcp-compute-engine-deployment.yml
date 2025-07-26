@@ -33,7 +33,7 @@ jobs:
             --command='
               echo "service_account_file: <your-service-account-file-path>" >> ~/test.txt
               cat ~/test.txt
-              sed -i "s/<your-service-account-file-path>/${{steps.auth.outputs.credentials_file_path}}/" ~/test.txt
+              sed -i "s|<your-service-account-file-path>|${{steps.auth.outputs.credentials_file_path}}|" ~/test.txt
               cat ~/test.txt
             '
       #- name: SSH and Pull Repo in GCP VM

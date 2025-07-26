@@ -31,8 +31,6 @@ jobs:
         run: |
           pip install ansible-core requests google-auth
           ansible-galaxy collection install google.cloud
-          sudo apt update
-          sudo apt install -y jq
     
       - name: Setup Ansible inventory
         id: setup_inventory

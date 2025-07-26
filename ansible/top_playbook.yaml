@@ -2,4 +2,4 @@
   hosts:
     - "khiratsuka-containers-vm"
   roles:
-    - nginx/switchbot_from_discord_container/
+    - switchbot_from_discord_container/

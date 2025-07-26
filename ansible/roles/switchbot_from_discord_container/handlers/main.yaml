@@ -1,4 +1,4 @@
 - name: Run Container
-  tasks:
-    - name: ls -ltr
-      run: ls -ltr
+  command: ls -ltr
+- name: After
+  command: cat ~/test.txt

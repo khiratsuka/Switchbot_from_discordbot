@@ -1,5 +1,4 @@
 - name: Top Level Playbook
-  hosts:
-    - "khiratsuka-containers-vm"
+  hosts: all
   roles:
     - switchbot_from_discord_container/

@@ -34,9 +34,10 @@ jobs:
       - name: Setup Ansible inventory
         id: setup_inventory
         run: |
+          pwd
           sed -i "s|<your-service-account-file-path>|${{steps.auth.outputs.credentials_file_path}}|" ansible/inventories/bot_container/bot_container.gcp.yaml
           ansible-inventory --list -i ansible/inventories/bot_container/bot_container.gcp.yaml
-          
+
       - name: test on VM
         run: |
           gcloud compute ssh khiratsuka-containers@khiratsuka-containers-vm \

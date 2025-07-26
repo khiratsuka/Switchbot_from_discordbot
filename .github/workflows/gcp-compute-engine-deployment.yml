@@ -24,6 +24,7 @@ jobs:
           project_id: switchbot-from-discordbot
           workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
+          token_format: access_token
 
       - name: Setup Ansible
         id: setup_ansible
@@ -38,8 +39,7 @@ jobs:
         run: |
           pwd
           cat ansible/inventories/bot_container/bot_container.gcp.yaml
-          token=$(cat ${{steps.auth.outputs.credentials_file_path}} | jq -r .credential_source.headers.Authorization)
-          sed -i "s|<your-access-token>|${token}|" ansible/inventories/bot_container/bot_container.gcp.yaml
+          sed -i "s|<your-access-token>|${{steps.auth.outputs.access_token}}|" ansible/inventories/bot_container/bot_container.gcp.yaml
           ansible-inventory --list -i ansible/inventories/bot_container/bot_container.gcp.yaml
 
       - name: test on VM
